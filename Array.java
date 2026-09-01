@@ -266,5 +266,32 @@ public class Array {
         }
         return result;
     }
-    
+
+    /**
+     * Given an array of integers, find the most occurring element in the array. 
+     * Example: arr = [1, 2, 3, 1, 2, 1] output = 1
+     * @param arr
+     * @return
+     */
+
+    public static int mostOccurringElement(int[] arr) {
+        // code here
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int num : arr){
+            if(map.containsKey(num)){
+                map.put(num, map.get(num)+1);
+            }else{
+                map.put(num,1);
+            }
+        }
+        int maxCount = 0;
+        int mostOccurring = 0;
+        for(Map.Entry<Integer,Integer> kv : map.entrySet()){
+            if(kv.getValue() > maxCount){
+                maxCount = kv.getValue();
+                mostOccurring = kv.getKey();
+            }
+        }
+        return mostOccurring;
+    }
 }
