@@ -274,6 +274,12 @@ public class Array {
      * @return
      */
 
+    /**
+     * use this when range is given more than 255 and find the majority element in the array
+     * Example: arr = [99, 2, 300, 1, 2, 1000] output = 2
+     * @param arr
+     * @return
+     */
     public static int mostOccurringElement(int[] arr) {
         // code here
         Map<Integer,Integer> map = new HashMap<>();
@@ -293,5 +299,59 @@ public class Array {
             }
         }
         return mostOccurring;
+    }
+
+    /**
+     * use this code when range is given from 0 to 255 and find the majority element in the array
+     * Example: arr = [1, 2, 3, 1, 2, 1] output = 1
+     * @param arr
+     * @return
+     */
+    public static int majorityElement(int arr[]) {
+        // code here
+        int majority = 0;
+        int maxCount = 0;
+        int freq[] = new int [256];
+        for(int n : arr){
+            freq[n]++;
+        }
+        
+        for(int i=0; i< freq.length;i++){
+            if(freq[i] > 0){
+                if(freq[i] > maxCount){
+                    maxCount = freq[i];
+                    majority = i;
+                }
+            }
+        }
+        if(maxCount > 1){
+            return majority;
+        }
+        
+        return -1;
+    }
+
+    /**
+     * You are given an integer array arr[]. 
+     * You need to find the maximum sum of a subarray (containing at least one element) in the array arr[].
+     * Input: arr[] = [2, 3, -8, 7, -1, 2, 3]
+       Output: 11
+        Explanation: The subarray [7, -1, 2, 3] has the largest sum 11
+     * @param arr
+     * @return
+     */
+    public static int maxSubarraySum(int[] arr) {
+
+        int curSum = arr[0];
+        int maxSum = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+
+            curSum = Math.max(arr[i], curSum + arr[i]);
+
+            maxSum = Math.max(maxSum, curSum);
+        }
+
+        return maxSum;
     }
 }
