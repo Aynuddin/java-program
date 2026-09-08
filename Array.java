@@ -354,4 +354,53 @@ public class Array {
 
         return maxSum;
     }
+
+    /**
+     * Given an array of integers, move all the 0's to the front of it while maintaining the relative order of the non-zero elements.
+     * Example: arr = [1, 2, 0, 3,  0, 4, 5, 0] output = [0, 0, 0, 1, 2, 3, 4, 5]
+     */
+    public static void moveAllZerosFront(){
+       int arr[] = {1,2,0,3,0,4,5,0};
+       int ar[] = new int[arr.length];
+      // move all zero to front 
+
+      int index = 0;
+      for(int n : arr){
+        if(n == 0){
+          ar[index++] = 0;
+        }
+      }
+
+      for(int n : arr){
+        if(n !=0 ){
+          ar[index++] = n;
+        } 
+      }
+      System.out.println("After moving zero on front is :"+ Arrays.toString(ar));
+    }
+
+    /**
+     * Given an array of integers, move all the 0's to the end of it while maintaining the relative order of the non-zero elements.
+     * Example: arr = [1, 2, 0, 3,  0, 4, 5, 0] output = [1, 2, 3, 4, 5, 0, 0, 0]
+     */
+
+    public static void moveAllZerosToEnd(){
+        int arr[] = {1,2,0,3,0,4,5,0};
+      // move all zero to end
+
+      int index = 0;
+      for(int n : arr){
+        if(n != 0){
+          arr[index++] = n;
+        }
+      }
+
+      while(index < arr.length){
+          arr[index++] = 0;
+      }
+
+      System.out.println("After moving zero on end is :"+ Arrays.toString(arr));
+    }
+
+
 }
