@@ -1,17 +1,20 @@
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class StringCode {
     public static void main(String[] args) {
 
         String str = "madam";
         // check palindrome
-        boolean isPaindrome =isPalindrome(str);
-        System.out.println(isPaindrome);
+        //boolean isPaindrome = isPalindrome(str);
+        //System.out.println(isPaindrome);
 
         // find the non repeating character
-        char ch = nonRepeatingChar(str);
-        System.out.println(ch);    
+        //char ch = nonRepeatingChar(str);
+        //System.out.println(ch);   
+        printOnlyVowelsFromString(); 
     }
     /**
      * check whether plaindrome or not and if plaindrome return true else false
@@ -263,4 +266,76 @@ public class StringCode {
       System.out.print("Reverse character : "+rev); //emocleW*ot*avaJ
     }
 
+    public static void printOnlyVowelsFromString(){
+        String str = "Welcome*to*java";
+        String vowels = "";
+        for(char ch : str.toCharArray()){
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'){
+                vowels += ch;
+            }
+        }
+        System.out.println("Only vowels from the string: " + vowels);
+    }
+
+    public static void printOnlyConsonantsFromString(){
+        String str = "Welcome*to*java";
+        String consonants = "";
+        for(char ch : str.toCharArray()){
+            if((ch >= 'a' && ch <= 'z' || ch >= 'A' && ch <= 'Z') && !(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U')){
+                consonants += ch;
+            }
+        }
+        System.out.println("Only consonants from the string: " + consonants);
+    }
+
+    /**
+     * Find the last non-repeating character in a string
+     * Example: str = "Welcome*to*java" output = 'm'
+     */
+    public static void printlastnonrepeatingChar(){
+        String str = "Welcome*to*java";
+        Map<Character,Integer> map = new LinkedHashMap<>();
+        for(char ch : str.toCharArray()){
+            if(map.containsKey(ch)){
+                map.put(ch, map.get(ch)+1);
+            }else{
+                map.put(ch,1);
+            }
+        }
+        char lastNonRepeatingChar = '$';
+        for(Map.Entry<Character,Integer> kv : map.entrySet()){
+            if(kv.getValue() == 1){
+                lastNonRepeatingChar = kv.getKey();
+            }
+        }
+        System.out.println("Last non-repeating character: " + lastNonRepeatingChar);
+    }
+
+    /**
+     * Find the last non-repeating character in a string
+     * Example: str = "automation" output = 'n'
+     */
+    public static void printLastNonRepeatingCharInString(){
+        String str = "automation";
+        // find last non-repeating character
+        Map<Character,Integer> map = new LinkedHashMap<>();
+        Set<Character> set = new LinkedHashSet<>();
+        for(char ch : str.toCharArray()){
+            if(map.containsKey(ch)){
+                map.put(ch,map.get(ch)+1);
+            }else{
+                map.put(ch,1);
+            }
+        }
+        for(Map.Entry<Character,Integer> kv : map.entrySet()){
+            if(kv.getValue() == 1){
+        
+                set.clear();
+    
+                set.add(kv.getKey());
+            }
+        }
+        System.out.println("Last non repeating character is : "+set.toString());
+
+    }
 }
