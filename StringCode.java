@@ -338,4 +338,197 @@ public class StringCode {
         System.out.println("Last non repeating character is : "+set.toString());
 
     }
+
+    /**
+     * Print only vowels from the given string
+     * Example: str = "automation" output = "auoai"
+     * @param str
+     */
+    public static void printOnlyVowel(String str){
+        char ch [] = str.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<ch.length;i++){
+            if("aeiouAEIOU".indexOf(ch[i]) != -1){
+                sb.append(ch[i]);
+            }
+        }
+        System.out.println("Vowels from string : "+sb.toString());
+    }
+
+    /**
+     * Print only consonants from the given string
+     * Example: str = "automation" output = "tmtn"
+     * @param str
+     */
+    public static void printOnlyConsonant(String str){
+        char ch [] = str.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<ch.length;i++){
+            if(ch[i] == ' '){
+                continue;
+            }
+            if("aeiouAEIOU".indexOf(ch[i]) == -1){
+                sb.append(ch[i]);
+            }
+        }
+        System.out.println("Consonant from string : "+sb.toString());
+    }
+
+    /**
+     * Reverse only middle word from the given string
+     * Example: str = "java:online_compiler" output = "java enilno compiler"
+     */
+    public static void onlyReverseMiddleWord(){
+        String str = "java:online_compiler";
+        String splitStr [] = str.split("[^a-zA-Z]+");
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i< splitStr.length;i++){
+            System.out.println(splitStr[i]);
+            if(splitStr[i].equals("online")){
+                String rev = new StringBuilder(splitStr[i]).reverse().toString();
+                sb.append(rev);
+                sb.append(" ");
+            }else{
+                sb.append(splitStr[i]);
+                sb.append(" ");
+            }
+        }
+        System.out.println("Only reverse middle word from string : "+sb.toString());
+    }
+
+    /**
+     * Reverse only middle word from the given string without using reverse() method
+     * Example: str = "java:online_compiler" output = "java enilno compiler"
+     */
+    public static void onlyReverseMiddleWordWithoutUsingReverseMethod(){
+        String str = "java:online_compiler";
+        String splitStr [] = str.split("[^a-zA-Z]+");
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i< splitStr.length;i++){
+            System.out.println(splitStr[i]);
+            if(splitStr[i].equals("online")){
+                int left =0;
+                char c [] = splitStr[i].toCharArray();
+                int right = c.length -1;
+                while(left < right){
+                    char ch = c[left];
+                    c[left] = c[right];
+                    c[right] = ch;
+                    left++;
+                    right--;
+                }
+                sb.append(c);
+                sb.append(" ");
+            }else{
+                sb.append(splitStr[i]);
+                sb.append(" ");
+            }
+        }
+        System.out.println("Only reverse middle word from string : "+sb.toString());
+    }
+
+    /** 
+     * Reverse the given string without using reverse() method
+     * Example: str = "java:online_compiler" output = "relipm
+     */
+    public static void reverseStringWithoutUsingReverseMethod(){
+        String str = "onlinecompiler";
+        char c [] = str.toCharArray();
+        int left = 0;
+        int right = c.length -1;
+        while(left < right){
+            char ch = c[left];
+            c[left] = c[right];
+            c[right] = ch;
+            left++;
+            right--;
+        }
+        System.out.println("Reverse string without using reverse method : "+new String(c));
+    }
+
+    /**
+     * Compress the given string by replacing consecutive repeated characters with the character and its count
+     * Example: str = "aaabbccd" output = "a3b2c2d1"
+     */
+    public static void characterCompressLogic(){
+        String str = "aaabbccd";
+        int count =1;
+        StringBuilder sb = new StringBuilder();
+        for(int i = 1;i<str.length(); i++){
+            if(str.charAt(i) != str.charAt(i-1)){
+                sb.append(str.charAt(i-1));
+                sb.append(count);
+                count =1;
+            }else{
+                count++;
+            }
+        }
+        sb.append(str.charAt(str.length()-1));
+        sb.append(count);
+        System.out.println("Compressed string : "+sb.toString());
+    }
+
+    /**
+     * Decompress the given string by expanding characters with their counts
+     * Example: str = "a3b2c2d1" output = "aaabbccd"
+     */
+    public static void characterDecompress(){
+        String str = "a3b2c2d3";//"aaabbccd";
+        StringBuilder sb = new StringBuilder();
+        for(int i=1;i<str.length();i=i+2){
+            char ch = str.charAt(i);
+            int digit = ch -'0';
+            for(int j=0;j<digit;j++){
+                sb.append(str.charAt(i-1));
+            }
+        }
+        System.out.println("Decompress String : "+sb.toString());
+    }
+
+    /**
+     * Find the second maximum number from the given string
+     * Example: str = "ayn3b2c6d5" output = 5
+     */
+    public static void findSecondMaxNumberFromString(){
+        String str = "ayn3b2c6d5";//"aaabbccd";
+        int firstMax = Integer.MIN_VALUE;
+        int secMax = Integer.MIN_VALUE;
+        for(int i=0;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(ch -'0' >= 0 && ch -'0' <=9){
+                int digit = ch-'0';
+                if(digit > firstMax){
+                    secMax = firstMax;
+                    firstMax = digit;
+                }else if (digit > secMax && firstMax != digit){
+                    secMax = digit;
+                }
+            }
+        }
+        System.out.println("Second Max digit from String String : "+secMax);
+    }
+
+
+    /**
+     * Find the second minimum number from the given string
+     * Example: str = "ayn3b2c6d5" output = 3
+     */
+    public static void findSecondMinNumberFromString(){
+        String str = "ayn3b4c6d5";//"aaabbccd";
+        int firstMin = Integer.MAX_VALUE;
+        int secMin = Integer.MAX_VALUE;
+        for(int i=0;i<str.length();i++){
+            char ch = str.charAt(i);
+            if(ch -'0' >= 0 && ch -'0' <=9){
+                int digit = ch-'0';
+                if(digit < firstMin){
+                    secMin = firstMin;
+                    firstMin = digit;
+                }else if (digit < secMin && firstMin != digit){
+                    secMin = digit;
+                }
+            }
+        }
+        System.out.println("Second Min digit from String String : "+secMin);
+    }
 }
