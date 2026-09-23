@@ -10,6 +10,8 @@ public class ArrayMedium {
         firstMissingNumber();
         findSmallestAndLargestNumberFromNegativeArray();
         findSmallestAndLargestNumberPositiveArray();
+        stockBuyAndSellForMultipleTransaction();
+        stockBuyAndSellForSingleTrans();
     }
 
     public static List<Integer> findLeadersOfArray(){
@@ -147,5 +149,55 @@ public class ArrayMedium {
         }  
        System.out.println("Sorting array : "+Arrays.toString(arr)); // 4,3,2,1,0
     }
+
+    /**
+     * Stock Buy and Sell – Multiple Transaction Allowed
+     * Given an integer array prices[], 
+     * where prices[i] is the price of a given stock on the ith day. 
+     * Each day you may decide to either buy or sell the stock at price[i], 
+     * you can even buy and sell the stock on the same day, return the maximum profit that you can get 
+     */
+
+    public static void stockBuyAndSellForMultipleTransaction(){
+        int prices[] = {100, 180, 260, 310, 40, 535, 695};
+        int maxProfit = 0;
+        for(int i=1;i<prices.length;i++){
+            if(prices[i] > prices [i-1]){
+                maxProfit += prices[i] - prices[i-1];
+            }
+        }
+        System.out.println("Maximum profit from multiple transactions: " + maxProfit);
+    }
+
+    /**
+     * Stock Buy and Sell – Single Transaction Allowed
+     * Given an integer array prices[], 
+     * where prices[i] is the price of a given stock on the ith day. 
+     * You may complete at most one transaction (i.e., buy one and sell one share of the stock), return the maximum profit that you can get 
+     */
+
+    public static void stockBuyAndSellForSingleTrans(){
+        int prices[] = {100, 180, 260, 310, 40, 535, 695};
+        int minPrice = prices[0];
+        int maxProfit = 0;
+        for(int i=1;i<prices.length;i++){
+            if(prices[i] < minPrice){
+                minPrice = prices[i];
+            }
+            int profit = prices[i] - minPrice;
+            if(profit > maxProfit){
+                maxProfit = profit;
+            }
+            
+        }
+        System.out.println("Maximum profit from single transaction: " + maxProfit);
+    }
+
+    /**
+     * Given an unsorted array arr containing both positive and negative numbers. 
+     * Your task is to rearrange the array and
+     * convert it into an array of alternate positive and negative numbers without changing the relative order.
+     * Example: Input: arr[] = {1, 2, 3, -4, -1, 4} Output: arr[] = {-4, 1, -1, 2, 3, 4}
+     */
     
 }
